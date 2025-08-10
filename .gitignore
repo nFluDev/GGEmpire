@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Derleme çıktı klasörü (electron-builder output)
+dist/
+assets/
+
+# Log dosyaları
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+
+# VSCode ayarları
+.vscode/
+
+# Debug / temporary dosyalar
+*.log
+*.tmp

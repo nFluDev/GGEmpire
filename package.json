@@ -1,0 +1,97 @@
+{
+  "name": "ggempire",
+  "version": "0.0.1-dev",
+  "description": "GoodGame Empire",
+  "keywords": [
+    "GoodGame",
+    "Empire"
+  ],
+  "homepage": "https://github.com/nFluDev/GGEmpire#readme",
+  "bugs": {
+    "url": "https://github.com/nFluDev/GGEmpire/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nFluDev/GGEmpire.git"
+  },
+  "license": "UNLICENSED",
+  "author": {
+    "name": "nFluDev",
+    "email": "admin@nflu.dev"
+  },
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:all": "npm run build:win && npm run build:mac && npm run build:linux",
+    "build:win": "electron-builder --win nsis --x64 --ia32 --arm64",
+    "build:mac": "electron-builder --mac dmg --x64 --arm64 --universal",
+    "build:linux": "electron-builder --linux deb AppImage"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.nflu.empire",
+    "productName": "Empire",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "main.js",
+      "preload.js"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg"
+        }
+      ],
+      "icon": "assets/icon.icns"
+    },
+    "dmg": {
+      "background": "assets/background.jpg",
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "format": "ULFO"
+    },
+    "linux": {
+      "category": "Game",
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ],
+      "icon": "assets/icon.png"
+    }
+  }
+}
