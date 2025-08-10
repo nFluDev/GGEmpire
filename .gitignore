@@ -3,7 +3,6 @@ node_modules/
 
 # Derleme çıktı klasörü (electron-builder output)
 dist/
-assets/
 
 # Log dosyaları
 npm-debug.log*
