@@ -1,0 +1,32 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+#game-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#drag-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    cursor: default;
+    z-index: 100;
+}
+
+#drag-layer.active {
+    pointer-events: auto;
+    cursor: move;
+    -webkit-app-region: drag;
+}

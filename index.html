@@ -1,86 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Empire Web Game</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
-        }
-        #game-iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-        #drag-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            pointer-events: none;
-            cursor: default;
-            z-index: 100;
-        }
-        #drag-layer.active {
-            pointer-events: auto;
-            cursor: move;
-            -webkit-app-region: drag;
-        }
-    </style>
+    <title>GoodGame Empire</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="drag-layer"></div>
     <iframe id="game-iframe" src="https://empire.nflu.dev" allow="fullscreen"></iframe>
-
-    <script>
-        const dragLayer = document.getElementById('drag-layer');
-        let isDragging = false;
-        let startX = 0;
-        let startY = 0;
-
-        window.electronAPI.onToggleMoveMode((_, state) => {
-            if (state) {
-                console.log('-> MOVE MODE ACTIVATED');
-                dragLayer.classList.add('active');
-                isDragging = true; // Sinyal geldiği anda sürükleme modunu etkinleştir
-            } else {
-                console.log('-> MOVE MODE DEACTIVATED');
-                dragLayer.classList.remove('active');
-                isDragging = false; // Sinyal geldiği anda sürükleme modunu kapat
-            }
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                console.log('MOUSE UP - Dragging ended');
-            }
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                const deltaX = e.screenX - startX;
-                const deltaY = e.screenY - startY;
-                window.electronAPI.dragWindow(deltaX, deltaY);
-                startX = e.screenX;
-                startY = e.screenY;
-            }
-        });
-
-        dragLayer.addEventListener('mousedown', (e) => {
-            if (isDragging) {
-                startX = e.screenX;
-                startY = e.screenY;
-                e.preventDefault();
-                console.log('MOUSE DOWN - Dragging started');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
